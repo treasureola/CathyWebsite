@@ -43,8 +43,8 @@ def addCart():
         connection = sqlite3.connect("Database.db")
         connection.row_factory = sqlite3.Row
         cursor = connection.cursor()
-        # if not session.get("email"):
-        #     return render_template(email = session.get("email"))
+        if not session.get("email"):
+            return redirect('/')
         if not session.get("cart"):
             session['cart'] = {}
         id = request.form["id"]
@@ -52,17 +52,15 @@ def addCart():
         data = cursor.fetchone()
         if id not in session['cart'].keys(): 
             session['cart'][id] = 1
-            print(session['cart'])
-            cursor.execute("INSERT INTO cart(cp_email, cp_name, cp_price, cp_id, cp_quantity) VALUES (?, ?, ?, ?, ?)", (session.get("email"), data["p_name"], data["price"], id, 1, ))
-            print(11111111111111)
+            print(1111111111, session['cart'])
+            cursor.execute("INSERT INTO cart(cp_email, cp_name, cp_price, cp_id, cp_quantity, cpo_id) VALUES (?, ?, ?, ?, ?,?)", (session.get("email"), data["p_name"], data["price"], id, session['cart'][id], "null", ))
             connection.commit()
-            print(333333333)
         else:
-            print(2222222222222)
-            session['cart'][id] += 1 
+            session["cart"][id] += 1
+            print(222222,session['cart'])
             cursor.execute("UPDATE cart SET cp_quantity = ? WHERE cp_email = ? AND cp_id = ?", (session['cart'][id], session.get("email"), id, ))
             connection.commit()
-    return redirect(request.referrer, email=session.get("email"))
+    return redirect(request.referrer)
 
 @app.route('/viewCart')
 def viewCart():
@@ -70,10 +68,18 @@ def viewCart():
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
     if not session.get("email"):
-        redirect('/')
+        return redirect('/')
     cursor.execute("SELECT * FROM cart WHERE cp_email = ?", (session.get("email"), ))
     data = cursor.fetchall()
-    return render_template("viewCart.html", result = data)
+    total = 0
+    for item in data:
+        if item["cp_quantity"] > 1:
+            temp = item["cp_quantity"] * item["cp_price"]
+            total += temp
+        else: 
+            total += item["cp_price"]
+    print(total)
+    return render_template("viewCart.html", result = data, total = total)
 
 @app.route('/clearCart')
 def clearCart():
@@ -97,16 +103,39 @@ def deleteCart():
         if not session.get("email"):
             return redirect('/')
         id = request.form["id"]
-        # print(session['cart'])
         session['cart'].pop(id)
-        # try:
-        #     session['cart'].pop(id)
-        # except:
-        #     print("key no in dict")
         cursor.execute("DELETE FROM cart where cp_id = ? AND cp_email = ?", (id, session.get("email")))
         connection.commit()
-        # connection.close()
     return redirect(request.referrer)
+    
+@app.route('/order')
+def order():
+    connection = sqlite3.connect("Database.db")
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    if not session.get("email"):
+        return redirect('/')
+    cursor.execute("SELECT * FROM cart WHERE cp_email = ?", (session.get("email"), ))
+    data = cursor.fetchall()
+    return render_template("order.html", result = data)
+
+@app.route('/checkout')
+def checkout():
+    connection = sqlite3.connect("Database.db")
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    if not session.get("email"):
+        return redirect('/')
+    cursor.execute("SELECT fname FROM users WHERE email = ?", (session.get("email"), ))
+    data = cursor.fetchone()
+    print(data["fname"])
+    cursor.execute("UPDATE cart SET cpo_id = ? WHERE cp_email = ?", (data["fname"], session.get("email"), ))
+    connection.commit()
+    # cursor.execute("SELECT CURRENT_DATE()")
+    # cursor.execute("SELECT CURRENT_TIME()")
+    cursor.execute("INSERT INTO orders (user_email, order_date, order_time, order_id) VALUES (?,GETDATE(),GETIME(),?)", (session.get("email"), data,))
+    connection.commit()
+    return render_template("receipt.html")
     
 ####################################################
 #                   LOGIN/LOGOUT                   #

@@ -35,24 +35,4 @@
 
       </ul>
     </div>
-  </nav>
-
-<body>
-    <h1> 
-        Total: 
-    </h1>
-    {% for item in result %}
-        {{item["cp_name"]}} <br>
-        {{item["cp_price"]}} <br>
-        Quantity: {{item["cp_quantity"]}} <br>
-        <form action = '/deleteCart' method = 'POST'> 
-            <input type = 'hidden' name = "id" value = {{item["cp_id"]}}>
-            <input type='submit' value = 'Delete cart'>
-        </form>
-    {% endfor %}
-    <br>
-    <form action = '/products'>
-        <input type = 'submit' value = 'back to Products'>
-    </form>
-</body>
-</html>
+</nav>
