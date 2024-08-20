@@ -14,6 +14,7 @@ app.secret_key = "GODISGOOD"
 #                   HOME                          #
 ####################################################
 @app.route('/')
+
 def home():
     connection = sqlite3.connect("Database.db")
     connection.row_factory = sqlite3.Row
@@ -57,7 +58,7 @@ def addCart():
             connection.commit()
         else:
             session["cart"][id] += 1
-            print(222222,session['cart'])
+            print(222222,session['cart'][id])  
             cursor.execute("UPDATE cart SET cp_quantity = ? WHERE cp_email = ? AND cp_id = ?", (session['cart'][id], session.get("email"), id, ))
             connection.commit()
     return redirect(request.referrer)
