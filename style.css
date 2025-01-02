@@ -121,6 +121,26 @@ button[class*=btn] {
     border: none;
     cursor: pointer;
 }
+
+.addtocart-btn[class*=btn] {
+    width: 70px;
+    height: 50px;
+    background-color: #E1E8EE;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.checkout-btn[class*=btn] {
+    width: 70px;
+    height: 50px;
+    background-color: #E1E8EE;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    justify-content: center;
+}
+
 .minus-btn img {
     margin-bottom: 3px;
 }
@@ -134,6 +154,15 @@ button[class*=btn] {
 }
 
 .total-price {
+    width: 83px;
+    padding-top: 27px;
+    text-align: center;
+    font-size: 16px;
+    color: #43484D;
+    font-weight: 300;
+}
+
+.products-total-price {
     width: 83px;
     padding-top: 27px;
     text-align: center;
