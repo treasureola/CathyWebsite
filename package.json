@@ -19,6 +19,7 @@
   "homepage": "https://github.com/OT-Projects/CathyWebsite#readme",
   "description": "",
   "dependencies": {
-    "firebase": "^11.1.0"
+    "firebase": "^11.1.0",
+    "react-scripts": "^5.0.1"
   }
 }
