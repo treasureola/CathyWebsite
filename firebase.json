@@ -1,0 +1,19 @@
+{
+  "hosting": {
+    "site": "cathy-b354a-e1aab",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+
+  "emulators": {
+    "hosting": {
+      "port": 5002,
+      "host": "0.0.0.0"
+    }
+  }
+
+}
