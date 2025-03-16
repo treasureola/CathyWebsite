@@ -1,22 +1,38 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import cart from "./cart.js";
+import products from "./products.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAZajC4Mjx1gJuRqH0fmfWXjUvYFe_AYJY",
-  authDomain: "cathy-b354a.firebaseapp.com",
-  databaseURL: "https://cathy-b354a-default-rtdb.firebaseio.com",
-  projectId: "cathy-b354a",
-  storageBucket: "cathy-b354a.firebasestorage.app",
-  messagingSenderId: "804564901869",
-  appId: "1:804564901869:web:2d9e66ed9d175efae051e4",
-  measurementId: "G-Q1ZGEPM91T"
-};
+let app = document.getElementById('app');
+let temporaryContent = document.getElementById('temporaryContent');
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//load tempelate file
+const loadTemplate = () => {
+    fetch('/template.html')
+    .then(resposne => resposne.text())
+    .then(html => {
+      app.innerHTML = html;
+      let contentTab = document.getElementById('contentTab');
+      contentTab.innerHTML = temporaryContent.innerHTML;
+      temporaryContent.innerHTML = null;
+      cart();
+      initApp();
+    })
+  }
+  loadTemplate();
+  
+  const initApp = () => {
+    let listProduct = document.querySelector('.listProduct');
+    listProduct.innerHTML = null;
+    products.forEach(product => {
+      let newProduct = document.createElement('div');
+      newProduct.classList.add('item');
+      newProduct.innerHTML = `
+        <img src="${product.image}"/>
+        <h2>${product.name}</h2>
+        <div class="price">$${product.price}</div>
+        <button class='addCart'>
+          Add To Cart
+        </button
+      `;
+      listProduct.appendChild(newProduct);
+    })
+  }

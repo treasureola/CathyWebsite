@@ -3,28 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Order Now</title>
+
+    <!-- Google font CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Font awesome -->
+    <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="css/home.css">
+<!-- 
+    - Add to cart button
+    - Adding product to cart
+    - Products on checkout page
+    - Adding to database
+-->
 </head>
 <body>
-    WELCOME TO CATHY CATHERING
-    <!-- Email input -->
-    <div data-mdb-input-init class="form-outline mb-4">
-        <input type="email" id="email" name = "email" class="form-control" />
-        <label class="form-label" for="form2Example1">Email address</label>
-    </div>
-      
-    <!-- Password input -->
-    <div data-mdb-input-init class="form-outline mb-4">
-        <input type="password" id="password" name = "password" class="form-control" />
-        <label class="form-label" for="form2Example2">Password</label>
-    </div>
+    <header>
+         <!-- NAVBAR  -->
+         <nav class="navbar">
+            <!-- LOGO -->
+            <img src="img/logo.png" class="logo" alt="">
+            <ul class="links-container">
+                <li class="link_items"> <a href='#' class="links"> Home</a></li>
+                <li class="link_items"> <a href='#' class="links"> Menu/Order</a></li>
+                <li class="link_items"> <a href='#' class="links"> Contact</a></li>
+                <li class="link_items"> <a href='#' class="links"> My Profile</a></li>
+            </ul>
+
+            <!-- SEARCH BOX -->
+            <div class="nav-extras">
+                <div class="search">
+                    <input type="text" class="search-box" placeholder="Search menu">
+                    <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i> </button>
+                </div>
+                <!-- CART BTN -->
+                <div class="container">
+                    <header class="header">
+                        <div class="cart">
+                            <a> <i class="fa-solid fa-cart-shopping"></i></a>
+                            <span>0</span>
+                        </div>
+                    </header>
+                </div>
+            </div>
+        </nav>
+        <!-- hero section -->
+        <main id="hero-section">
+            <!-- hero content -->
+            <div class="hero-content">
+                <h1 class="hero-heading"> Eat the best </h1>
+                <p class="hero-line">Explore and understand the culture more by tasting this amazing cuisine</p>
+                <!-- Search menu available -->
+                
+
+                <div class="hero-action-btn-container">
+                    <button class="btn"> View menu/Order Food </button>
+                    <p class='or'> or </p>
+                    <button class="btn transparent"> View Profile </button>
+                </div>
+            </div>
+
+            <!-- hero image container -->
+            <div class="hero-img-container">
+                <div class="background-ele">
+                    <div class="ellipse"></div>
+                    <div class="ellipse"></div>
+                    <div class="ellipse"></div>
+                </div>
+                <div class="forground-elements">
+                    <img src="img/meatpie.jpeg" class="hero-img" alt="">
+                    <img src="img/meatpie.jpeg" class="hero-img" alt="">
+                    <img src="img/meatpie.jpeg" class="hero-img" alt="">
+                </div>
+            </div>
+        </main>
         
-    <!-- Submit button -->
-    <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4" >Sign in</button>
-      
-    <!-- Register buttons -->
-    <div class="text-center">
-        <p>Not a member? <a href="/signup">Register</a></p>
+    </header>
+     <!-- Shopping Cart -->
+    <div class="cartTab">
+        <h1>Shopping Cart</h1>
+        <div class="listCart">
+            show item here
+        </div>
+        <div class="Cbtn">
+            <button class="close">CLOSE</button>
+            <button class="checkOut">
+                Check Out
+            </button>
+        </div>
     </div>
-</body>
-</html>
+
+    <!-- Menu -->
+    <div class="container">
+        <section class="menu">
+          <!-- title -->
+          <div class="title">
+            <h2>My Restaurant Menu</h2>
+          </div>
+          <!-- filter buttons-->
+          <div class="btn-container">
+            <button class="btn btn-outline-dark btn-item" data-id="All">ALL</button>
+            <button class="btn btn-outline-dark btn-item" data-id="APPETIZERS">APPETIZERS</button>
+            <button class="btn btn-outline-dark btn-item" data-id="STEAKS">STEAK CUTS</button>
+            <button class="btn btn-outline-dark btn-item" data-id="SEAFOOD">SEAFOOD</button>
+            <button class="btn btn-outline-dark btn-item" data-id="SALADS">SALADS AND SOUPS</button>
+            <button class="btn btn-outline-dark btn-item" data-id="DESSERTS">DESSERTS</button>
+          </div>
+          <!-- menu items -->
+          <div class="section-center row">
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="https://media.cnn.com/api/v1/images/stellar/prod/170206165040-dubai-michelin-dining-boca.jpg?q=x_3,y_140,h_1516,w_2694,c_crop/h_720,w_1280/f_webp" alt="Spicy lobster" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Spicy Lobster</h4>
+                      <h4 class="price">$19.00</h4>
+                    </div>
+                    <div class="menu-text">
+                      Ounce lobster tails, white wine, san marzano, red chile, olive oil.
+                    </div>
+                </div>
+              </div>
+  
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="https://assets.epicurious.com/photos/57a8adfbb10b4fb03f234f37/master/w_1000,h_667,c_limit/escargots-a-la-bourguignonne.jpg" alt="Baked escargot" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Baked Escargot</h4>
+                      <h4 class="price">$16.00</h4>
+                    </div>
+                    <div class="menu-text">
+                      White wine, escargots, parmesan cheese, butter, olive.
+                    </div>
+                </div>
+              </div>
+  
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="https://hips.hearstapps.com/hmg-prod/images/190226-seared-tuna-435-1552085484.jpg?crop=0.888888888888889xw:1xh;center,top&resize=1200:*" alt="Seared ahi tuna" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Seared Ahi Tuna</h4>
+                      <h4 class="price">$17.50</h4>
+                    </div>
+                    <div class="menu-text">Ahi tuna, soy sauce, honey, toasted sesame oil, toasted sesame honey marinade.</div>
+                </div>
+              </div>
+  
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="img/domates.jpg" alt="Prosciutto wrapped mozarella" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Prosciutto Wrapped Mozarella</h4>
+                      <h4 class="price">$14.00</h4>
+                    </div>
+                    <div class="menu-text">Balsamic vinegar, fresh mozzarella balls, grape tomatoes.</div>
+                </div>
+              </div>
+  
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="https://qvc.scene7.com/is/image/QVC/m/98/m66298.001" alt="Filet mignon 8 ounce" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Filet Mignon, 8 ounce</h4>
+                      <h4 class="price">$38.00</h4>
+                    </div>
+                    <div class="menu-text">Filet mignon, rosemary, butter, olive oil, black pepper.</div>
+                </div>
+              </div>
+  
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="https://i0.wp.com/peteandsams.com/wp-content/uploads/2018/08/HC-Filet-1_small-1024x688.jpg?fit=1024%2C688&ssl=1" alt="Filet mignon 12 ounce" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Filet Mignon, 12 ounce</h4>
+                      <h4 class="price">$49.00</h4>
+                    </div>
+                    <div class="menu-text">Filet mignon steaks, garlic, sea salt, fresh rosemary, black pepper.</div>
+                  </div>
+                </div>
+  
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/61xeljO9CiL.jpg" alt="Rib eye steak 18 ounce" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Rib Eye Steak, 18 ounce</h4>
+                      <h4 class="price">$39.00</h4>
+                    </div>
+                    <div class="menu-text">Kansas City Steak Company signature cut Bone-in Ribeye Steak.</div>
+                  </div>
+                </div>
+  
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2022/07/18/QK706-kardea-brown-crab-stuffed-lobster-tails-with-blender-bernaise.jpg.rend.hgtvcom.616.462.suffix/1658176726805.jpeg" alt="Stuffed lobster tail" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Stuffed Lobster Tail</h4>
+                      <h4 class="price">$18.50</h4>
+                    </div>
+                    <div
+                    class="menu-text">Lobster tails, jumbo lump crabmeat, lemon juice, garlic.
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="https://happilyunprocessed.com/wp-content/uploads/2019/01/killer-maryland-crab-cakes.jpg" alt="Maryland crab cake dinner" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Maryland Crab Cake Dinner</h4>
+                      <h4 class="price">$16.00</h4>
+                    </div>
+                    <div class="menu-text">Old bay seasoning, lump crab meat, dijon mustard.</div>
+                  </div>
+                </div>
+  
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="https://www.foodrepublic.com/wp-content/uploads/2012/05/Grilled_Lobster.jpg" alt="Whole lobster" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Whole Lobster</h4>
+                      <h4 class="price">$19.00</h4>
+                    </div>
+                    <div class="menu-text">Live maine lobster, butter, sea salt, lemon.</div>
+                  </div>
+                </div>
+  
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="https://www.cookingchanneltv.com/content/dam/images/cook/fullset/2016/4/13/0/CCTIF213H_Warm-Spinach-Salad_s4x3.jpg" alt="Spinach salad" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Spinach Salad</h4>
+                      <h4 class="price">$9.50</h4>
+                    </div>
+                    <div class="menu-text">Additional ingredients include tomatoes, eggs, cheese, slivered almonds, walnuts and/or fresh or dried berries, such as cranberry, or strawberry.</div>
+                  </div>
+                </div>
+  
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="https://www.thespruceeats.com/thmb/2pjgFA7_nbZtlXr68BECvf6fO48=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/caprese-salad-tomato-salad-2217097-hero-03-75a0b89b30aa4a52b10fe4fdd9abfeb5.jpg" alt="Caprese salad" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Caprese Salad</h4>
+                      <h4 class="price">$10.50</h4>
+                    </div>
+                    <div class="menu-text">An Italian salad, made of sliced fresh mozzarella, tomatoes, and sweet basil, seasoned with salt, and olive oil.</div>
+                  </div>
+                </div>
+  
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="https://storcpdkenticomedia.blob.core.windows.net/media/recipemanagementsystem/media/recipe-media-files/recipes/retail/x17/17651-cinnamon-apple-crisp-760x580.jpg?ext=.jpg" alt="Apple crisp" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Apple Crisp</h4>
+                      <h4 class="price">$8.50</h4>
+                    </div>
+                    <div class="menu-text">Warm apple cinnamon filling topped with a crunchy oat crumble, vanilla ice cream and caramel sauce.</div>
+                  </div>
+                </div>
+  
+                <div class="menu-items col-lg-6 col-sm-12">
+                  <img src="https://www.mystoryinrecipes.com/uploads/4/4/9/3/44938739/5321015_orig.jpg" alt="Twin cannoli" class="photo">
+                  <div class="menu-info">
+                    <div class="menu-title">
+                      <h4>Twin Cannoli</h4>
+                      <h4 class="price">$7.00</h4>
+                    </div>
+                    <div class="menu-text">Two crisp cannoli shells filled with our house made chocolate chip ricotta cannoli cream.
+                    </div>
+                  </div>
+                </div>
+          </div>
+              <footer
+                class="title">
+                <h2>My Restaurant Menu</h2>
+              </footer>
+        </section>
+    </div>
+
+    <!-- Contanct Section -->
+    <div class="Ccontainer">
+        <form action="action_page.php">
+      
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="firstname" placeholder="Your name..">
+      
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+      
+          <label for="country">Country</label>
+          <select id="country" name="country">
+            <option value="australia">Australia</option>
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+          </select>
+      
+          <label for="subject">Subject</label>
+          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+      
+          <input type="submit" value="Submit">
+      
+        </form>
+    </div>
+    <script src="cart.js"></script>
+</body> 
+</html> 

@@ -1,0 +1,463 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --accent-color: #eaf2f5;
+    --primary-text-color: #141414;
+    --secondary-text-color: #007676;
+    --light-text-color: #fff;
+    --primary-color: #fff;
+    --secondary-color: #007676;
+    --alpha-secondary-color: rgba(0,118,118,0.2);
+    --discount-color: #e71a1c;
+    --card-hover-bg-color: #f9f9f9;
+    --border-color: #f9f9f9;
+    --box-shadow-color: var(var(--accent-color));
+    --shadow: rgba(0,0,0,0.05);
+    --box-shadow: rgba(0,0,0,0.25);
+    --discount-banner-background-overlay: linear-gradient(rgba(0,118,118,0.8), rgba(0,118));
+    --phone-app-shadow: #C7E1EB;
+    --alpha-primary-color: rgba(255,255,255,0.5);
+    --rating-color: #ffa800;
+}
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: var(--primary-text-color);
+    background: var(--primary-color);
+}
+
+.navbar{
+    position:fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    padding: 0 10vw;
+    z-index: 9;
+    background: var(--accent-color);
+}
+
+.logo{
+    height:1.5rem;
+}
+
+.links-container{
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin-left: 7.5%;
+}
+
+.links{
+    color: var(--priamry-text-color);
+    text-decoration: none;
+    text-transform: .5rem 1rem;
+    transition: .2s;
+}
+
+.links:hover{
+    color: var(--secondary-text-color);
+}
+
+.nav-extras{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 1rem;
+}
+
+.search{
+    position: relative;
+    width: 20vw;
+    min-width: 150px;
+    height: 2.5rem;
+    border-radius: .5rem;
+    overflow: hidden;
+}
+
+.search-box{
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    border: none;
+    padding: 1rem;
+    outline: none;
+    font-size: .9rem;
+}
+
+.search-btn{
+    position: absolute;
+    border: none;
+    right: 0;
+    width: 3rem;
+    height: 100%;
+    background: var(--primary-color);
+    text-align: center;
+    cursor: pointer;
+    color: var(--secondary-text-color);
+}
+
+.cart{
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--secondary-text-color);
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: .5s;
+    position: relative;
+}
+
+.cart:hover, .locate-btn:hover{
+    background: var(--alpha-secondary-color);
+}
+
+/* hero section */
+#hero-section{
+    min-height: 100vh;
+    padding: 0 10vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--accent-color);
+}
+
+.hero-content{
+    width: 40%;
+}
+
+.hero-heading{
+    font-size: 4rem;
+    line-height: 5rem;
+    font-weight: 700;
+    color: var(--secondary-text-color);
+}
+
+.hero-line{
+    line-height: 2rem;
+    opacity: 0.75;
+    margin-top: 2rem;
+}
+
+.search.location{
+    width: 100%;
+    height: 3.5rem;
+    border-radius: .2rem;
+    margin: 2.5rem 0;
+}
+
+.locate-btn{
+    font-size: 1.2rem;
+    width: 4rem;
+    transition: .5s;
+}
+
+.search.location .search-box{
+    padding: 1rem 1.5rem;
+}
+
+.hero-action-btn-container{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.btn{
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: .3rem;
+    font-size: 1rem;
+    color: var(--light-text-color);
+    background: var(--secondary-color);
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.btn.transparent{
+    background: transparent;
+    border: .1rem solid var(--secondary-color);
+    color: var(--secondary-text-color);
+}
+
+.hero-action-btn-container .or{
+    color: var(--secondary-text-color);
+}
+
+.hero-img-container{
+    min-width: 30rem;
+    min-height: 30rem;
+    position: relative;
+    transform: scale(0.9) translateY(1rem);
+}
+
+.background-ele, .forground-elements{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.ellipse{
+    position: absolute;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    border-radius: 100%;
+    border: .01rem solid var(--secondary-color);
+    transform-origin: center;
+}
+
+.ellipse:nth-child(1){
+    width: 80%;
+    transform: translate(-50%, -50%) rotate(20deg);
+}
+
+.ellipse:nth-child(2){
+    width: 90%;
+    transform: translate(-50%, -50%) rotate(40deg);
+}
+
+.ellipse:nth-child(3){
+    width: 80%;
+    transform: translate(-50%, -50%) rotate(-20deg);
+}
+
+.hero-img{
+    position: absolute;
+    width: 10rem;
+    border-radius: 100%;
+    box-shadow: 0 1rem 1rem var(--shadow);
+}
+
+.hero-img:nth-child(1){
+    width: 18rem;
+    left: -1%;
+    top: -15%;
+}
+.hero-img:nth-child(2){
+    width: 18rem;
+    left: -0.05%;
+    top: 65%;
+}
+
+.hero-img:nth-child(3){
+    width: 18rem;
+    left: 65%;
+    top: 35%;
+}
+
+/* Shopping Cart */
+.container{
+    /* width: 900px; */
+    max-width: 90vw;
+    margin: auto;
+    text-align: center;
+    padding-top: 10px;
+    transition: 0.5s;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.cart:hover, .locate-btn:hover{
+    background: var(--alpha-secondary-color);
+}
+
+.cart span{
+    background-color: red;
+    position: absolute;
+    top: 10%;
+    right: -20px;
+    width: 30px;
+    height: 40px;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartTab{
+    background-color: gray;
+    color: #eee;
+    width: 400px;
+    max-width: 100%;
+    position: fixed;
+    top: 4%;
+    /* height: 50rem; */
+    right: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-rows: 70px 1fr 70px;
+}
+
+.cartTab h1{
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+}
+
+.cartTab .Cbtn{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.cartTab .Cbtn button{
+    background-color: yellow;
+    border: none;
+    font-family: Poppins;
+    font-weight: 500;
+}
+
+.cartTab .Cbtn button.close{
+    background: white;
+    border: .1rem solid var(--secondary-color);
+    color: var(--secondary-text-color);
+}
+
+.cartTab .listCart{
+    overflow: auto;
+}
+
+.cartTab .listCart::-webkit-scrollbar{
+    width:0;
+}
+
+.cartTab{
+    right: -400px;
+    transition: 0.5s;
+}
+
+body.activeTabCart .cartTab{
+    right: 0;
+}
+
+/* body.activeTabCart .container{
+    transform: translateX(-250px);
+} */
+
+/* Menu Page */
+* {
+    box-sizing: border-box;
+  }
+  
+  /* body {
+    margin: 0;
+    padding: 0;
+    background-color: #f1f5f8;
+    font-family: "Zilla Slab", serif;
+  } */
+  
+  h2 {
+    font-family: "Great Vibes", cursive;
+    font-size: 3rem;
+    text-align: center;
+    color: #ff6a23;
+    padding-top: 50px;
+  }
+  
+  footer>h2 {
+    font-family: "Great Vibes", cursive;
+    font-size: 2rem;
+    text-align: center;
+    color: #964b29;
+  
+  }
+  .menu {
+    margin-top: 20px;
+  }
+  
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+  }
+  .btn-item {
+    margin-left: 15px;
+  }
+  
+  .photo {
+    width: 30%;
+    height: 175px;
+    object-fit: cover;
+    border: 0.25rem solid black;
+    border-radius: 10px;
+    box-shadow: -10px 10px 10px 0px rgba(0,0,0,0.75);
+  }
+  .menu-items {
+    display: flex;
+    margin: 20px 0;
+    padding-right: 50px;
+  }
+  .menu-info {
+    margin-left: 20px;
+    width: 100%;
+  }
+  .menu-title {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+  }
+  
+  h4 {
+    color: #e00a00;
+  }
+  
+  .menu-text {
+    padding-top: 20px;
+  }
+  
+  footer {
+    margin-top: 50px;
+    position: relative;
+    bottom: 30px;
+    width: 100%;
+  }
+
+/* Contact Section */
+/* Style inputs with type="text", select elements and textareas */
+input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */ 
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+  
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+    background-color: #04AA6D;
+    color: var(--primary-color);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+  
+/* Add a background color and some padding around the form */
+.Ccontainer {
+    border-radius: 5px;
+    background-color: #007676;
+    padding: 20px;
+}
