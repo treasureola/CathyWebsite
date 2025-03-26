@@ -29,8 +29,20 @@ html {
 body {
     font-family: 'Lato', sans-serif;
     color: var(--primary-text-color);
-    background: var(--primary-color);
+    background: darkkhaki;
+    overflow-x: hidden;
 }
+
+html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Add padding to the top of the target section to prevent overlap with the navbar */
+  #menu-section, #contact-section {
+    padding-top: 80px; /* Adjust this value based on your navbar height */
+    margin-top: -80px; /* Counteracts the padding, ensuring the section is positioned correctly */
+    /* position: relative; */
+  }
 
 .navbar{
     position:fixed;
@@ -311,7 +323,7 @@ body {
 
 .cartTab .Cbtn{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, 1fr); */
 }
 
 .cartTab .Cbtn button{
@@ -342,6 +354,66 @@ body {
 
 body.activeTabCart .cartTab{
     right: 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-item-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.cart-item-title {
+    flex-grow: 1;
+}
+
+.cart-item-price {
+    margin-right: 10px;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.cart-item-quantity button {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 5px;
+}
+
+.cart-item-quantity button:hover {
+    background-color: #ddd;
+}
+
+.cart-item button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+
+
+.cartImage{
+    width: 20%;
+    height: 70px;
+    object-fit: cover;
+    border: 0.25rem solid black;
+    border-radius: 10px;
+    box-shadow: -10px 10px 10px 0px rgba(0,0,0,0.75);
 }
 
 /* body.activeTabCart .container{
@@ -426,6 +498,98 @@ body.activeTabCart .cartTab{
     bottom: 30px;
     width: 100%;
   }
+
+/* Cart Container */
+.col-25 {
+    width: 25%;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+  }
+  
+.Chcontainer {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Cart Header */
+h4 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .price {
+    font-weight: bold;
+  }
+  
+  #cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* .cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  } */
+
+.cart-item p {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.cart-item .price {
+    font-weight: bold;
+    font-size: 1rem;
+    justify-content: space-between;
+}
+  
+.cart-item .quantity {
+    font-size: 1.3rem;
+    color: #555;
+    justify-content: space-between;
+}
+
+.cart-summary {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.cart-summary .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.quantity-container {
+    display: flex;
+    gap: 10px;
+}
+    
+.quantity-number{
+    width: 30px;
+    padding: 2px;
+    font-size: 14px;
+    display: flex;
+}
+
+    
+.add-to-cart-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.add-to-cart-btn{
+
+}
 
 /* Contact Section */
 /* Style inputs with type="text", select elements and textareas */

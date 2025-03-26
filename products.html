@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase Product Write</title>
+</head>
+<body>
+  <h1>Write Product Data to Firebase</h1>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+
+// Your Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAeayNjPcYEheW3253EznF5wMM5_uprBJ0",
+  authDomain: "cathy-b354a.firebaseapp.com",
+  databaseURL: "https://cathy-b354a-default-rtdb.firebaseio.com",
+  projectId: "cathy-b354a",
+  storageBucket: "cathy-b354a.firebasestorage.app",
+  messagingSenderId: "804564901869",
+  appId: "1:804564901869:web:2d9e66ed9d175efae051e4",
+  measurementId: "G-Q1ZGEPM91T"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+function writeProducts() {
+  const productsData = {
+    "product1": {
+      "category": "Sushi",
+      "desc": "Fresh and delicious sushi rolls",
+      "id": "product1",
+      "img": "https://example.com/images/sushi.jpg",
+      "title": "Salmon Sushi Roll",
+      "prices": {
+        "Full Dozen": 12.99,
+        "Half Dozen": 7.99,
+        "Full Tray": 20.99,
+        "Half Tray": 11.99
+      },
+      "quantity": ["Full Dozen", "Half Dozen", "Full Tray", "Half Tray"]
+    },
+    "product2": {
+      "category": "Drinks",
+      "desc": "Refreshing Zobo drink",
+      "id": "product2",
+      "img": "https://example.com/images/zobo.jpg",
+      "title": "Covenant Zobo",
+      "prices": {
+        "Full Dozen": 8.99,
+        "Half Dozen": 5.49,
+        "Full Tray": 14.99,
+        "Half Tray": 7.99
+      },
+      "quantity": ["Full Dozen", "Half Dozen", "Full Tray", "Half Tray"]
+    },
+    "product3": {
+      "category": "Sushi",
+      "desc": "Spicy tuna with a kick",
+      "id": "product3",
+      "img": "https://example.com/images/spicy-tuna.jpg",
+      "title": "Spicy Tuna Roll",
+      "prices": {
+        "Full Dozen": 14.99,
+        "Half Dozen": 8.99,
+        "Full Tray": 24.99,
+        "Half Tray": 13.99
+      },
+      "quantity": ["Full Dozen", "Half Dozen", "Full Tray", "Half Tray"]
+    }
+  };
+  
+
+  const dbRef = ref(db, 'Products');
+
+  // Write the data to the database
+  set(dbRef, productsData)
+    .then(() => {
+      console.log("Products data saved successfully.");
+    })
+    .catch((error) => {
+      console.error("Error saving product data:", error);
+    });
+}
+
+writeProducts(); // Call this function to write products to Firebase
+
+  </script>
+</body>
+</html>

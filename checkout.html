@@ -3,116 +3,495 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Style -->
     <link rel="stylesheet" href="css/checkout.css">
-
-    <!-- Google font CDN-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-
-    <!-- Font awesome -->
     <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-    <title>Document</title>
+    <title>Checkout</title>
+</head>
 <body>
-  <!-- NAVBAR  -->
+  <!-- NAVBAR -->
   <nav class="navbar">
-    <!-- LOGO -->
     <img src="img/logo.png" class="logo" alt="">
     <ul class="links-container">
-        <li class="link_items"> <a href='#' class="links"> Home</a></li>
-        <li class="link_items"> <a href='#' class="links"> Menu/Order</a></li>
-        <li class="link_items"> <a href='#' class="links"> Contact</a></li>
-        <li class="link_items"> <a href='#' class="links"> My Profile</a></li>
-    </ul>
+      <li class="link_items"> <a href='#' class="links"> Home</a></li>
+      <li class="link_items"> <a href='home.html#menu-section' class="links"> Menu</a></li>
+      <li class="link_items"> <a href='home.html#contact-section' class="links"> Contact Us</a></li>
+      <li class="link_items"> <a href='authentication.html' class="links" id="auth-link"> Log In</a></li>
+      <li class="link_items"> <a href='profile.html' class="links"> My Profile</a></li>
+  </ul>
 
-    <!-- SEARCH BOX -->
     <div class="nav-extras">
         <div class="search">
             <input type="text" class="search-box" placeholder="Search menu">
             <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i> </button>
         </div>
     </div>
-  </nav>
-  <h2>Responsive Checkout Form</h2>
-  <p>Resize the browser window to see the effect. When the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other.</p>
+</nav>
+
+<div class="title">
+  <h2>Checkout</h2>
+</div>
+
   <div class="row">
     <div class="col-75">
       <div class="container">
-        <form action="/action_page.php">
-        
+        <form id="checkout-form">
+          <!-- Saved Address Selection -->
+          <label for="saved-addresses">Choose a saved shipping address:</label>
+          <select id="saved-addresses">
+              <option value="">Select a saved address</option>
+          </select>
+          <!-- Saved Payment Method Selection -->
+          <label for="saved-payments">Choose a saved payment method:</label>
+          <select id="saved-payments">
+              <option value="">Select a saved payment</option>
+          </select>
+          <!-- Shipping Address Section -->
           <div class="row">
             <div class="col-50">
-              <h3>Billing Address</h3>
+              <h3>Shipping Address</h3>
               <label for="fname"><i class="fa fa-user"></i> Full Name</label>
               <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-              <label for="email"><i class="fa fa-envelope"></i> Email</label>
-              <input type="text" id="email" name="email" placeholder="john@example.com">
               <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
               <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
               <label for="city"><i class="fa fa-institution"></i> City</label>
               <input type="text" id="city" name="city" placeholder="New York">
-
-              <div class="row">
-                <div class="col-50">
-                  <label for="state">State</label>
-                  <input type="text" id="state" name="state" placeholder="NY">
-                </div>
-                <div class="col-50">
-                  <label for="zip">Zip</label>
-                  <input type="text" id="zip" name="zip" placeholder="10001">
-                </div>
-              </div>
+              <label for="state">State</label>
+              <input type="text" id="state" name="state" placeholder="NY">
+              <label for="zip">Zip</label>
+              <input type="text" id="zip" name="zip" placeholder="10001">
             </div>
 
+            <!-- Billing Address Section (Initially Hidden) -->
+            <div class="col-50" id="billing-address" style="display:none;">
+              <h3>Billing Address</h3>
+              <label for="billing_fname"><i class="fa fa-user"></i> Full Name</label>
+              <input type="text" id="billing_fname" name="billing_firstname" placeholder="John M. Doe">
+              <label for="billing_adr"><i class="fa fa-address-card-o"></i> Address</label>
+              <input type="text" id="billing_adr" name="billing_address" placeholder="542 W. 15th Street">
+              <label for="billing_city"><i class="fa fa-institution"></i> City</label>
+              <input type="text" id="billing_city" name="billing_city" placeholder="New York">
+              <label for="billing_state">State</label>
+              <input type="text" id="billing_state" name="billing_state" placeholder="NY">
+              <label for="billing_zip">Zip</label>
+              <input type="text" id="billing_zip" name="billing_zip" placeholder="10001">
+            </div>
+
+            <!-- Payment Section -->
             <div class="col-50">
               <h3>Payment</h3>
-              <label for="fname">Accepted Cards</label>
-              <div class="icon-container">
-                <i class="fa fa-cc-visa" style="color:navy;"></i>
-                <i class="fa fa-cc-amex" style="color:blue;"></i>
-                <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                <i class="fa fa-cc-discover" style="color:orange;"></i>
-              </div>
-              <label for="cname">Name on Card</label>
+              <label for="cardname">Name on Card</label>
               <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-              <label for="ccnum">Credit card number</label>
+              <label for="ccnum">Credit Card Number</label>
               <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" name="cvv" placeholder="352">
               <label for="expmonth">Exp Month</label>
               <input type="text" id="expmonth" name="expmonth" placeholder="September">
-              <div class="row">
-                <div class="col-50">
-                  <label for="expyear">Exp Year</label>
-                  <input type="text" id="expyear" name="expyear" placeholder="2018">
-                </div>
-                <div class="col-50">
-                  <label for="cvv">CVV</label>
-                  <input type="text" id="cvv" name="cvv" placeholder="352">
-                </div>
-              </div>
+              <label for="expyear">Exp Year</label>
+              <input type="text" id="expyear" name="expyear" placeholder="2018">
             </div>
-            
           </div>
+
+          <!-- Shipping Address Same as Billing -->
           <label>
-            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+            <input type="checkbox" checked="checked" name="sameadr" id="sameadr"> Billing Address same as shipping
           </label>
-          <input type="submit" value="Continue to checkout" class="btn">
+
+          <input type="submit" value="Place Order" class="btn">
         </form>
       </div>
     </div>
+
+    <!-- Cart Section -->
     <div class="col-25">
-      <div class="container">
-        <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
-        <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-        <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-        <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-        <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+      <div class="Chcontainer">
+        <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b id="cart-item-count">0</b></span></h4>
+        <div id="cart-items">
+          <!-- Cart items will be dynamically injected here -->
+        </div>
         <hr>
-        <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+        <div class="cart-summary">
+          <p>Total <span class="price" style="color:black"><b id="cart-total">$0.00</b></span></p>
+        </div>
       </div>
     </div>
   </div>
+<script>
+  // Toggle the billing address section visibility when the checkbox is toggled
+  document.getElementById('sameadr').addEventListener('change', function() {
+    const billingAddressSection = document.getElementById('billing-address');
+    if (this.checked) {
+      billingAddressSection.style.display = 'none';
+    } else {
+      billingAddressSection.style.display = 'block';
+    }
+  });
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+  import { getDatabase, ref, set, push, get } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAeayNjPcYEheW3253EznF5wMM5_uprBJ0",
+    authDomain: "cathy-b354a.firebaseapp.com",
+    databaseURL: "https://cathy-b354a-default-rtdb.firebaseio.com",
+    projectId: "cathy-b354a",
+    storageBucket: "cathy-b354a.firebasestorage.app",
+    messagingSenderId: "804564901869",
+    appId: "1:804564901869:web:2d9e66ed9d175efae051e4",
+    measurementId: "G-Q1ZGEPM91T"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const auth = getAuth(app);
+
+  let currentUserEmail = "";
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      currentUserEmail = user.email;
+      loadUserProfile(user.email);
+      loadCart(user.email);  // Load cart from Firebase when user is authenticated
+    }
+  });
+
+  function loadCart(userEmail) {
+    const userEmailKey = userEmail.replace(/[.#$[\]]/g, '_');
+    const cartRef = ref(db, `Users/${userEmailKey}/cart`);
+
+    get(cartRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        const cartData = snapshot.val();
+        displayCartItems(cartData);
+      } else {
+        console.log("No cart data available.");
+      }
+    }).catch((error) => {
+      console.error("Error fetching cart data:", error);
+    });
+  }
+
+  function displayCartItems(cartData) {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartItemCount = document.getElementById('cart-item-count');
+    const cartTotal = document.getElementById('cart-total');
+
+    let total = 0;
+    let itemCount = 0;
+
+    cartItemsContainer.innerHTML = "";
+
+    if (cartData && typeof cartData === 'object' && Object.keys(cartData).length > 0) {
+      for (let productTitle in cartData) {
+        const product = cartData[productTitle];
+
+        if (product.price && product.quantity && product.img) {
+          const itemPrice = product.price * product.quantity;
+          total += itemPrice;
+          itemCount += product.quantity;
+
+          const cartItemHTML = `
+            <div class="cart-item">
+              <img src="${product.img}" alt="${productTitle}" class="cart-item-img" />
+              <p><a>${productTitle}</a> 
+              <span class="price">$${itemPrice.toFixed(2)} </span> 
+              x <span class="quantity">${product.quantity}</span></p>
+            </div>
+          `;
+          cartItemsContainer.innerHTML += cartItemHTML;
+        }
+      }
+    } else {
+      cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+    }
+
+    cartItemCount.innerText = itemCount;
+    cartTotal.innerText = `$${total.toFixed(2)}`;
+  }
+
+  function loadUserProfile(userEmail) {
+    const userEmailKey = userEmail.replace(/[.#$[\]]/g, '_');
+    const addressesRef = ref(db, `Users/${userEmailKey}/profile/addresses`);
+    const paymentMethodsRef = ref(db, `Users/${userEmailKey}/profile/paymentMethods`);
+
+    // Fetch saved addresses
+    get(addressesRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            const addresses = snapshot.val();
+            populateAddressDropdown(addresses);
+        } else {
+            console.log("No saved addresses found.");
+        }
+    }).catch((error) => {
+        console.error("Error fetching addresses:", error);
+    });
+
+    // Fetch saved payment methods
+    get(paymentMethodsRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            const payments = snapshot.val();
+            populatePaymentDropdown(payments);
+        } else {
+            console.log("No saved payment methods found.");
+        }
+    }).catch((error) => {
+        console.error("Error fetching payment methods:", error);
+    });
+}
+
+function formatCardNumber(cardNumber) {
+  if (!cardNumber) return "";
+  
+  const cleaned = cardNumber.replace(/\D/g, ""); // Remove non-digit characters
+  let masked = cleaned.slice(0, -4).replace(/\d/g, "*") + cleaned.slice(-4); 
+  return masked.replace(/(.{4})/g, "$1 "); // Format as XXXX XXXX XXXX XXXX
+}
+
+async function encryptCVV(cvv) {
+  if (!cvv) return "";
+
+  const encoder = new TextEncoder();
+  const keyMaterial = await window.crypto.subtle.generateKey(
+      { name: "AES-GCM", length: 256 },
+      true,
+      ["encrypt", "decrypt"]
+  );
+
+  const iv = window.crypto.getRandomValues(new Uint8Array(12)); // Generate IV for AES-GCM
+  const encryptedData = await window.crypto.subtle.encrypt(
+      { name: "AES-GCM", iv },
+      keyMaterial,
+      encoder.encode(cvv)
+  );
+
+  // Store as Base64 for temporary use
+  return btoa(String.fromCharCode(...new Uint8Array(encryptedData))) + "." + btoa(String.fromCharCode(...iv));
+}
+
+
+
+function populateAddressDropdown(addresses) {
+    const addressSelect = document.getElementById("saved-addresses");
+    addressSelect.innerHTML = `<option value="">Select a saved address</option>`; // Default option
+
+    Object.entries(addresses).forEach(([key, address]) => {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = `${address.fullName}, ${address.address}, ${address.city}, ${address.state} ${address.zip}`;
+        option.dataset.address = JSON.stringify(address); // Store full address in dataset
+        addressSelect.appendChild(option);
+    });
+
+    addressSelect.addEventListener("change", function () {
+        const selectedAddress = this.options[this.selectedIndex].dataset.address;
+        if (selectedAddress) {
+            populateAddressFields(JSON.parse(selectedAddress));
+        }
+    });
+}
+
+function populatePaymentDropdown(payments) {
+    const paymentSelect = document.getElementById("saved-payments");
+    paymentSelect.innerHTML = `<option value="">Select a saved payment</option>`; // Default option
+
+    Object.entries(payments).forEach(([key, payment]) => {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = `${payment.cardName} - **** **** **** ${payment.cardNumber.slice(-4)}`;
+        option.dataset.payment = JSON.stringify(payment); // Store full payment in dataset
+        paymentSelect.appendChild(option);
+    });
+
+    paymentSelect.addEventListener("change", function () {
+        const selectedPayment = this.options[this.selectedIndex].dataset.payment;
+        if (selectedPayment) {
+            populatePaymentFields(JSON.parse(selectedPayment));
+        }
+    });
+}
+
+function populateAddressFields(address) {
+    document.getElementById("fname").value = address.fullName || "";
+    document.getElementById("adr").value = address.address || "";
+    document.getElementById("city").value = address.city || "";
+    document.getElementById("state").value = address.state || "";
+    document.getElementById("zip").value = address.zip || "";
+}
+
+function populatePaymentFields(payment) {
+  document.getElementById("cname").value = payment.cardName || "";
+  document.getElementById("ccnum").value = payment.cardNumber || "";
+  document.getElementById("cvv").value = ""; // Do not auto-fill CVV for security reasons
+  document.getElementById("expmonth").value = payment.expMonth || "";
+  document.getElementById("expyear").value = payment.expYear || "";
+
+  // Auto-fill billing address from saved payment method
+  // **Auto-fill Billing Address from Saved Payment**
+  if (payment.billingAddress) {
+    fillBillingAddress(payment.billingAddress);
+  }
+}
+
+// **Function to Auto-Fill Billing Address Fields**
+function fillBillingAddress(billingAddress) {
+  document.getElementById('billing_fname').value = billingAddress.fullName || "";
+  document.getElementById('billing_adr').value = billingAddress.address || "";
+  document.getElementById('billing_city').value = billingAddress.city || "";
+  document.getElementById('billing_state').value = billingAddress.state || "";
+  document.getElementById('billing_zip').value = billingAddress.zip || "";
+
+  // Show billing address section if a saved billing address is applied
+  document.getElementById("billing-address").style.display = "block";
+  document.getElementById("sameadr").checked = false; // Uncheck "same as shipping"
+}
+
+
+// **Order Placement with Saved Details**
+// **Order Placement with Saved Details**
+async function placeOrder() {
+  if (!currentUserEmail) {
+      alert("Please log in to place an order.");
+      return;
+  }
+
+  const userEmailKey = currentUserEmail.replace(/[.#$[\]]/g, '_');
+  const cartRef = ref(db, `Users/${userEmailKey}/cart`);
+
+  get(cartRef).then(async (cartSnapshot) => {
+      if (!cartSnapshot.exists()) {
+          alert("Your cart is empty.");
+          return;
+      }
+
+      const cartData = cartSnapshot.val();
+      const orderTimestamp = new Date().toISOString();
+
+      // **Get selected or manually entered address**
+      const selectedAddressKey = document.getElementById('saved-addresses').value;
+      let shippingAddress;
+      try {
+          if (selectedAddressKey) {
+              shippingAddress = JSON.parse(document.getElementById('saved-addresses').selectedOptions[0].dataset.address);
+          } else {
+              shippingAddress = {
+                  fullName: document.getElementById('fname').value.trim(),
+                  address: document.getElementById('adr').value.trim(),
+                  city: document.getElementById('city').value.trim(),
+                  state: document.getElementById('state').value.trim(),
+                  zip: document.getElementById('zip').value.trim(),
+              };
+          }
+      } catch (error) {
+          console.error("Error parsing saved address:", error);
+          alert("Invalid saved address format. Please enter manually.");
+          return;
+      }
+
+      const sameAdr = document.getElementById('sameadr').checked;
+      let billingAddress;
+
+      // **Get selected or manually entered payment**
+      const selectedPaymentKey = document.getElementById('saved-payments').value;
+      let payment;
+      try {
+          if (selectedPaymentKey) {
+              payment = JSON.parse(document.getElementById('saved-payments').selectedOptions[0].dataset.payment);
+              
+              // **Auto-fill Billing Address from Saved Payment**
+              if (payment.billingAddress) {
+                  billingAddress = payment.billingAddress;
+                  fillBillingAddress(billingAddress);
+              } else {
+                  billingAddress = sameAdr ? shippingAddress : {}; // Keep empty if no saved billing address
+              }
+          } else {
+              payment = {
+                  cardName: document.getElementById('cname').value.trim(),
+                  cardNumber: formatCardNumber(document.getElementById('ccnum').value.trim()),
+                  cvv: await encryptCVV(document.getElementById('cvv').value.trim()), // Ensure encryption is awaited
+                  expMonth: document.getElementById('expmonth').value.trim(),
+                  expYear: document.getElementById('expyear').value.trim(),
+              };
+              billingAddress = sameAdr ? shippingAddress : {
+                  fullName: document.getElementById('billing_fname').value.trim(),
+                  address: document.getElementById('billing_adr').value.trim(),
+                  city: document.getElementById('billing_city').value.trim(),
+                  state: document.getElementById('billing_state').value.trim(),
+                  zip: document.getElementById('billing_zip').value.trim(),
+              };
+          }
+      } catch (error) {
+          console.error("Error parsing saved payment:", error);
+          alert("Invalid saved payment method format. Please enter manually.");
+          return;
+      }
+
+      // **Validation**
+      if (!shippingAddress.fullName || !shippingAddress.address || !payment.cardNumber) {
+          alert("Please complete all fields before placing your order.");
+          return;
+      }
+
+      const orderRef = ref(db, `Users/${userEmailKey}/orders`);
+      const newOrderRef = push(orderRef);
+      set(newOrderRef, {
+          timestamp: orderTimestamp,
+          shippingAddress,
+          billingAddress,
+          payment,
+          items: cartData,
+      });
+
+      // **Save new payment method if it's not already saved**
+      const paymentMethodsRef = ref(db, `Users/${userEmailKey}/profile/paymentMethods`);
+      get(paymentMethodsRef).then((snapshot) => {
+          const paymentMethodsData = snapshot.exists() ? Object.values(snapshot.val()) : [];
+          
+          const isExistingPayment = paymentMethodsData.some(existingPayment => 
+              JSON.stringify(existingPayment) === JSON.stringify({ ...payment, billingAddress })
+          );
+
+          if (!isExistingPayment) {
+              push(paymentMethodsRef, { ...payment, billingAddress });
+          }
+      });
+
+      // **Save new address if it's not already saved**
+      const addressesRef = ref(db, `Users/${userEmailKey}/profile/addresses`);
+      get(addressesRef).then((snapshot) => {
+          const existingAddresses = snapshot.exists() ? Object.values(snapshot.val()) : [];
+
+          const isExistingAddress = existingAddresses.some(existingAddress => 
+              JSON.stringify(existingAddress) === JSON.stringify(shippingAddress)
+          );
+
+          if (!isExistingAddress) {
+              push(addressesRef, shippingAddress);
+          }
+      });
+
+
+      // **Clear cart after order is placed**
+      set(cartRef, null);
+      alert("Order placed successfully!");
+      window.location.href = "receipt.html";
+  }).catch((error) => {
+      console.error("Error placing order:", error);
+  });
+}
+
+// **Attach Event Listener**
+document.querySelector('.btn').addEventListener('click', (event) => {
+    event.preventDefault();
+    placeOrder();
+});
+    
+</script>
 </body>
 </html>

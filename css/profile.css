@@ -1,0 +1,146 @@
+:root {
+    --accent-color: #eaf2f5;
+    --primary-text-color: #141414;
+    --secondary-text-color: #007676;
+    --primary-color: #fff;
+    --secondary-color: #007676;
+    --box-shadow: rgba(0, 0, 0, 0.25);
+    --hover-btn-color: #45a049; /* Consistent button hover color */
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    padding: 8px;
+    background: darkkhaki;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar Styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    padding: 0 10vw;
+    z-index: 9;
+    background: var(--accent-color);
+}
+
+.logo {
+    height: 1.5rem;
+}
+
+.links-container {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin-left: 7.5%;
+}
+
+.links {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    transition: .2s;
+}
+
+.links:hover {
+    color: var(--secondary-text-color);
+}
+
+/* Profile Section Styling */
+.container {
+    max-width: 90vw;
+    margin: auto;
+    text-align: left;
+    padding-top: 100px;
+    transition: 0.5s;
+    padding-bottom: 50px;
+}
+
+h2 {
+    font-family: "Great Vibes", cursive;
+    font-size: 3rem;
+    text-align: center;
+    color: #ff6a23;
+    padding-top: 50px;
+}
+
+/* Section Header Styling */
+h3 {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+/* Profile Info Section */
+.profile-info {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.profile-info p {
+    margin: 10px 0;
+    color: var(--primary-text-color);
+}
+
+.profile-info strong {
+    font-weight: 700;
+}
+
+/* Toggle Section Styling */
+.section-toggle {
+    margin-bottom: 40px;
+}
+
+.toggle-header {
+    padding: 10px;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.toggle-content {
+    display: none;
+    margin-top: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.address, .payment-method, .order {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.address p, .payment-method p, .order p {
+    margin: 5px 0;
+}
+
+/* Responsive Layout */
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 0 5vw;
+    }
+
+    .links-container {
+        margin-left: 5%;
+    }
+}
+

@@ -15,24 +15,35 @@
 
     <!-- Style -->
     <link rel="stylesheet" href="css/home.css">
-<!-- 
-    - Add to cart button
-    - Adding product to cart
-    - Products on checkout page
-    - Adding to database
--->
+    <!-- 
+    - Include name - Done
+    - Abiblity to edit profile
+    - log out button in navbar - Done
+    - Secure payment method
+    - make sure fields values are in the correct format
+    - search
+    - Original details
+    - Total placement in cart
+    - checkout button is disabled if car s 0
+    - Display all dresses on profile page
+    - payment methods also
+    - save payment method (ask user before display) and adress
+    - in checkout, select if you would like to choose some of your current addresses aor payment methods.
+    if a new one is added, save to addresses and payment methods after placing order
+    -->
 </head>
 <body>
     <header>
-         <!-- NAVBAR  -->
+         <!-- NAVBAR -->
          <nav class="navbar">
             <!-- LOGO -->
             <img src="img/logo.png" class="logo" alt="">
             <ul class="links-container">
                 <li class="link_items"> <a href='#' class="links"> Home</a></li>
-                <li class="link_items"> <a href='#' class="links"> Menu/Order</a></li>
-                <li class="link_items"> <a href='#' class="links"> Contact</a></li>
-                <li class="link_items"> <a href='#' class="links"> My Profile</a></li>
+                <li class="link_items"> <a href='#menu-section' class="links"> Menu</a></li>
+                <li class="link_items"> <a href='#contact-section' class="links"> Contact Us</a></li>
+                <li class="link_items"> <a href='authentication.html' class="links" id="auth-link"> Log In</a></li>
+                <li class="link_items"> <a href='profile.html' class="links"> My Profile</a></li>
             </ul>
 
             <!-- SEARCH BOX -->
@@ -54,21 +65,15 @@
         </nav>
         <!-- hero section -->
         <main id="hero-section">
-            <!-- hero content -->
             <div class="hero-content">
                 <h1 class="hero-heading"> Eat the best </h1>
                 <p class="hero-line">Explore and understand the culture more by tasting this amazing cuisine</p>
-                <!-- Search menu available -->
-                
-
                 <div class="hero-action-btn-container">
                     <button class="btn"> View menu/Order Food </button>
                     <p class='or'> or </p>
                     <button class="btn transparent"> View Profile </button>
                 </div>
             </div>
-
-            <!-- hero image container -->
             <div class="hero-img-container">
                 <div class="background-ele">
                     <div class="ellipse"></div>
@@ -82,232 +87,489 @@
                 </div>
             </div>
         </main>
-        
     </header>
-     <!-- Shopping Cart -->
+
+    <!-- Shopping Cart -->
     <div class="cartTab">
         <h1>Shopping Cart</h1>
         <div class="listCart">
-            show item here
+            <!-- Cart items will be dynamically injected here -->
+            <ul id="cart-items"></ul>
         </div>
         <div class="Cbtn">
             <button class="close">CLOSE</button>
-            <button class="checkOut">
-                Check Out
-            </button>
+            <button href="checkout.html" class="checkOut">Check Out</button>
         </div>
+        <div id="cart-total">Total: $0.00</div>
     </div>
 
     <!-- Menu -->
+    <section id="menu-section">
     <div class="container">
         <section class="menu">
-          <!-- title -->
-          <div class="title">
-            <h2>My Restaurant Menu</h2>
-          </div>
-          <!-- filter buttons-->
-          <div class="btn-container">
-            <button class="btn btn-outline-dark btn-item" data-id="All">ALL</button>
-            <button class="btn btn-outline-dark btn-item" data-id="APPETIZERS">APPETIZERS</button>
-            <button class="btn btn-outline-dark btn-item" data-id="STEAKS">STEAK CUTS</button>
-            <button class="btn btn-outline-dark btn-item" data-id="SEAFOOD">SEAFOOD</button>
-            <button class="btn btn-outline-dark btn-item" data-id="SALADS">SALADS AND SOUPS</button>
-            <button class="btn btn-outline-dark btn-item" data-id="DESSERTS">DESSERTS</button>
-          </div>
-          <!-- menu items -->
-          <div class="section-center row">
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="https://media.cnn.com/api/v1/images/stellar/prod/170206165040-dubai-michelin-dining-boca.jpg?q=x_3,y_140,h_1516,w_2694,c_crop/h_720,w_1280/f_webp" alt="Spicy lobster" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Spicy Lobster</h4>
-                      <h4 class="price">$19.00</h4>
-                    </div>
-                    <div class="menu-text">
-                      Ounce lobster tails, white wine, san marzano, red chile, olive oil.
-                    </div>
-                </div>
-              </div>
-  
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="https://assets.epicurious.com/photos/57a8adfbb10b4fb03f234f37/master/w_1000,h_667,c_limit/escargots-a-la-bourguignonne.jpg" alt="Baked escargot" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Baked Escargot</h4>
-                      <h4 class="price">$16.00</h4>
-                    </div>
-                    <div class="menu-text">
-                      White wine, escargots, parmesan cheese, butter, olive.
-                    </div>
-                </div>
-              </div>
-  
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="https://hips.hearstapps.com/hmg-prod/images/190226-seared-tuna-435-1552085484.jpg?crop=0.888888888888889xw:1xh;center,top&resize=1200:*" alt="Seared ahi tuna" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Seared Ahi Tuna</h4>
-                      <h4 class="price">$17.50</h4>
-                    </div>
-                    <div class="menu-text">Ahi tuna, soy sauce, honey, toasted sesame oil, toasted sesame honey marinade.</div>
-                </div>
-              </div>
-  
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="img/domates.jpg" alt="Prosciutto wrapped mozarella" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Prosciutto Wrapped Mozarella</h4>
-                      <h4 class="price">$14.00</h4>
-                    </div>
-                    <div class="menu-text">Balsamic vinegar, fresh mozzarella balls, grape tomatoes.</div>
-                </div>
-              </div>
-  
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="https://qvc.scene7.com/is/image/QVC/m/98/m66298.001" alt="Filet mignon 8 ounce" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Filet Mignon, 8 ounce</h4>
-                      <h4 class="price">$38.00</h4>
-                    </div>
-                    <div class="menu-text">Filet mignon, rosemary, butter, olive oil, black pepper.</div>
-                </div>
-              </div>
-  
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="https://i0.wp.com/peteandsams.com/wp-content/uploads/2018/08/HC-Filet-1_small-1024x688.jpg?fit=1024%2C688&ssl=1" alt="Filet mignon 12 ounce" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Filet Mignon, 12 ounce</h4>
-                      <h4 class="price">$49.00</h4>
-                    </div>
-                    <div class="menu-text">Filet mignon steaks, garlic, sea salt, fresh rosemary, black pepper.</div>
-                  </div>
-                </div>
-  
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/61xeljO9CiL.jpg" alt="Rib eye steak 18 ounce" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Rib Eye Steak, 18 ounce</h4>
-                      <h4 class="price">$39.00</h4>
-                    </div>
-                    <div class="menu-text">Kansas City Steak Company signature cut Bone-in Ribeye Steak.</div>
-                  </div>
-                </div>
-  
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2022/07/18/QK706-kardea-brown-crab-stuffed-lobster-tails-with-blender-bernaise.jpg.rend.hgtvcom.616.462.suffix/1658176726805.jpeg" alt="Stuffed lobster tail" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Stuffed Lobster Tail</h4>
-                      <h4 class="price">$18.50</h4>
-                    </div>
-                    <div
-                    class="menu-text">Lobster tails, jumbo lump crabmeat, lemon juice, garlic.
-                    </div>
-                  </div>
-                </div>
-  
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="https://happilyunprocessed.com/wp-content/uploads/2019/01/killer-maryland-crab-cakes.jpg" alt="Maryland crab cake dinner" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Maryland Crab Cake Dinner</h4>
-                      <h4 class="price">$16.00</h4>
-                    </div>
-                    <div class="menu-text">Old bay seasoning, lump crab meat, dijon mustard.</div>
-                  </div>
-                </div>
-  
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="https://www.foodrepublic.com/wp-content/uploads/2012/05/Grilled_Lobster.jpg" alt="Whole lobster" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Whole Lobster</h4>
-                      <h4 class="price">$19.00</h4>
-                    </div>
-                    <div class="menu-text">Live maine lobster, butter, sea salt, lemon.</div>
-                  </div>
-                </div>
-  
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="https://www.cookingchanneltv.com/content/dam/images/cook/fullset/2016/4/13/0/CCTIF213H_Warm-Spinach-Salad_s4x3.jpg" alt="Spinach salad" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Spinach Salad</h4>
-                      <h4 class="price">$9.50</h4>
-                    </div>
-                    <div class="menu-text">Additional ingredients include tomatoes, eggs, cheese, slivered almonds, walnuts and/or fresh or dried berries, such as cranberry, or strawberry.</div>
-                  </div>
-                </div>
-  
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="https://www.thespruceeats.com/thmb/2pjgFA7_nbZtlXr68BECvf6fO48=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/caprese-salad-tomato-salad-2217097-hero-03-75a0b89b30aa4a52b10fe4fdd9abfeb5.jpg" alt="Caprese salad" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Caprese Salad</h4>
-                      <h4 class="price">$10.50</h4>
-                    </div>
-                    <div class="menu-text">An Italian salad, made of sliced fresh mozzarella, tomatoes, and sweet basil, seasoned with salt, and olive oil.</div>
-                  </div>
-                </div>
-  
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="https://storcpdkenticomedia.blob.core.windows.net/media/recipemanagementsystem/media/recipe-media-files/recipes/retail/x17/17651-cinnamon-apple-crisp-760x580.jpg?ext=.jpg" alt="Apple crisp" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Apple Crisp</h4>
-                      <h4 class="price">$8.50</h4>
-                    </div>
-                    <div class="menu-text">Warm apple cinnamon filling topped with a crunchy oat crumble, vanilla ice cream and caramel sauce.</div>
-                  </div>
-                </div>
-  
-                <div class="menu-items col-lg-6 col-sm-12">
-                  <img src="https://www.mystoryinrecipes.com/uploads/4/4/9/3/44938739/5321015_orig.jpg" alt="Twin cannoli" class="photo">
-                  <div class="menu-info">
-                    <div class="menu-title">
-                      <h4>Twin Cannoli</h4>
-                      <h4 class="price">$7.00</h4>
-                    </div>
-                    <div class="menu-text">Two crisp cannoli shells filled with our house made chocolate chip ricotta cannoli cream.
-                    </div>
-                  </div>
-                </div>
-          </div>
-              <footer
-                class="title">
+            <div class="title">
                 <h2>My Restaurant Menu</h2>
-              </footer>
+            </div>
+            <div class="btn-container">
+                <!-- Category buttons will be injected here -->
+            </div>
+            <div class="section-center row" id="menu-items-container">
+                <!-- Menu items will be dynamically injected here -->
+            </div>
         </section>
     </div>
+</section>
 
-    <!-- Contanct Section -->
+    <!-- Contact Section -->
+    <section id="contact-section">
     <div class="Ccontainer">
         <form action="action_page.php">
-      
-          <label for="fname">First Name</label>
-          <input type="text" id="fname" name="firstname" placeholder="Your name..">
-      
-          <label for="lname">Last Name</label>
-          <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-      
-          <label for="country">Country</label>
-          <select id="country" name="country">
-            <option value="australia">Australia</option>
-            <option value="canada">Canada</option>
-            <option value="usa">USA</option>
-          </select>
-      
-          <label for="subject">Subject</label>
-          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-      
-          <input type="submit" value="Submit">
-      
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+            <label for="country">Country</label>
+            <select id="country" name="country">
+                <option value="australia">Australia</option>
+                <option value="canada">Canada</option>
+                <option value="usa">USA</option>
+            </select>
+
+            <label for="subject">Subject</label>
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+            <input type="submit" value="Submit">
         </form>
     </div>
-    <script src="cart.js"></script>
+</section>
+
+<script>
+    window.addEventListener('load', function() {
+        if (window.location.hash) {
+            const targetId = window.location.hash;
+            const targetElement = document.querySelector(targetId);
+    
+            if (targetElement) {
+                setTimeout(() => {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start' // Ensure the element is at the top
+                    });
+                }, 100);
+            }
+        }
+    });
+</script>
+
+    <script>
+        let iconCart = document.querySelector('.cart');
+        let closeBtn = document.querySelector('.cartTab .close');
+        let checkoutBtn = document.querySelector('.checkOut');
+        let body = document.querySelector('body');
+
+        iconCart.addEventListener('click', () => {
+            body.classList.toggle('activeTabCart');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            body.classList.toggle('activeTabCart');
+        });
+
+        checkoutBtn.addEventListener('click', () => {
+            window.location.href = "checkout.html";
+            checkout(); // Trigger the checkout process when clicking the checkout button
+        });
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+        import { getDatabase, ref, set, get, update } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyAeayNjPcYEheW3253EznF5wMM5_uprBJ0",
+            authDomain: "cathy-b354a.firebaseapp.com",
+            databaseURL: "https://cathy-b354a-default-rtdb.firebaseio.com",
+            projectId: "cathy-b354a",
+            storageBucket: "cathy-b354a.firebasestorage.app",
+            messagingSenderId: "804564901869",
+            appId: "1:804564901869:web:2d9e66ed9d175efae051e4",
+            measurementId: "G-Q1ZGEPM91T"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth(app);
+    
+        let currentUserEmail = "";
+        // Log authentication changes
+    onAuthStateChanged(auth, (user) => {
+        console.log("Auth State Changed: ", user);  // Logs the user object or null
+        const authLink = document.getElementById("auth-link");
+        const isGuest = sessionStorage.getItem("guestUser");
+
+        if (user) {
+            currentUserEmail = user.email;
+            authLink.textContent = "Log Out";
+            authLink.href = "authentication.html";
+            authLink.addEventListener("click", (event) => {
+                event.preventDefault();
+                signOut(auth).then(() => {
+                    sessionStorage.removeItem("guestUser");  // Remove guest mode on logout
+                    console.log("User logged out successfully");
+                    window.location.reload();  // Reload page after logout
+                }).catch((error) => {
+                    console.error("Logout error:", error);
+                });
+            });
+            loadCartFromFirebase(currentUserEmail);  // Load user's cart
+        } else if (isGuest) {
+            currentUserEmail = "";  // Guest users have no email
+            authLink.textContent = "Log In";
+            authLink.href = "authentication.html";
+            loadCartFromLocalStorage();  // Load guest cart
+        }else {
+            currentUserEmail = "";
+            authLink.textContent = "Log In";
+            authLink.href = "authentication.html";
+        }
+    });
+    
+        let productsData = {}; // Store products globally
+
+        const dataRef = ref(db, 'Products');
+
+        get(dataRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                productsData = snapshot.val();  // Store globally for easy access
+                const menu = Object.values(productsData);
+                menuList(menu);
+                categoryList(menu);
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error("Error getting data:", error);
+        });
+    
+        const menuList = (menuItems) => {
+            const section = document.querySelector(".section-center");
+            let displayMenu = menuItems.map((item) => {
+                const quantityOptions = item.quantity.map(qty => `
+                    <option value="${qty}">${qty} - $${item.prices[qty].toFixed(2)}</option>
+                `).join("");
+        
+                return `
+                    <div class="menu-items col-lg-6 col-sm-12">
+                        <img src="${item.img}" alt="${item.title}" class="photo" />
+                        <div class="menu-info">
+                            <div class="menu-title">
+                                <h4>${item.title}</h4>
+                            </div>
+                            <div class="menu-text">${item.desc}</div>
+                            <div class="add-to-cart-container">
+                                <div class="quantity-container">
+                                    <input type="number" class="quantity-number" value="1" data-id="${item.id}" min="1"/>
+                                    <select class="quantity-type" data-id="${item.id}">
+                                        ${quantityOptions}  <!-- Shows only Full Dozen, Half Dozen, Full Tray, Half Tray -->
+                                    </select>
+                                </div>
+                                <button class="add-to-cart-btn" data-id="${item.id}" data-title="${item.title}" data-img="${item.img}">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+        
+            section.innerHTML = displayMenu;
+        
+            document.querySelectorAll('.add-to-cart-btn').forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                    const { id, title, img } = e.currentTarget.dataset;
+                    const quantityContainer = e.currentTarget.closest('.add-to-cart-container').querySelector('.quantity-container');
+                    const quantityNumber = quantityContainer.querySelector('.quantity-number').value || '1';
+                    const quantityType = quantityContainer.querySelector('.quantity-type').value;
+                    const price = menuItems.find(item => item.id === id).prices[quantityType]; // Get correct price
+        
+                    addToCart(id, title, price, img, quantityNumber, quantityType);
+                });
+            });
+        };
+        
+    
+        function categoryList(menu) {
+            const btnContainer = document.querySelector(".btn-container");
+            const categories = menu.reduce((values, item) => {
+                if (!values.includes(item.category)) {
+                    values.push(item.category);
+                }
+                return values;
+            }, ["ALL"]);
+    
+            const categoryBtns = categories.map((category) => {
+                return `<button class="btn btn-outline-dark btn-item" data-id="${category}">${category}</button>`;
+            }).join("");
+    
+            btnContainer.innerHTML = categoryBtns;
+    
+            const filterBtns = document.querySelectorAll(".btn-item");
+            filterBtns.forEach((btn) => {
+                btn.addEventListener("click", (e) => {
+                    const category = e.currentTarget.dataset.id;
+                    const menuCategory = menu.filter((menuItem) => {
+                        return menuItem.category === category || category === "ALL";
+                    });
+                    menuList(menuCategory);
+                });
+            });
+        }
+    
+        let cart = {};
+    
+        function updateCartIcon() {
+            const cartIcon = document.querySelector('.cart span');
+            const totalQuantity = Object.values(cart).reduce((total, item) => total + item.quantity, 0); // Sum of all item quantities
+            cartIcon.textContent = totalQuantity;  // Update the cart icon with the total number of items
+        }
+ 
+
+        function getPrice(cartKey) {
+            const [title, quantityType] = cartKey.split('-');
+            const product = Object.values(productsData).find(item => item.title === title);
+            return product ? product.prices[quantityType] : 0;
+        }
+        
+        function loadCartFromFirebase(userEmail) {
+            if (!userEmail) return;
+    
+            const userEmailKey = userEmail.replace(/[.#$[\]]/g, '_');
+            const cartRef = ref(db, `Users/${userEmailKey}/cart`);
+    
+            get(cartRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    cart = snapshot.val();
+                    updateCart();
+                    updateCartIcon();
+                } else {
+                    console.log("No cart data found for this user.");
+                }
+            }).catch((error) => {
+                console.error("Error fetching cart data:", error);
+            });
+        }
+    
+        
+    
+        function addToCart(id, title, price, img, quantityNumber = 1, quantityType) {
+            let totalQuantity = parseFloat(quantityNumber);
+            const cartKey = `${title}-${quantityType}`; 
+        
+            if (!currentUserEmail) {
+                // Guest Mode: Save cart in localStorage
+                let guestCart = JSON.parse(localStorage.getItem("guestCart")) || {};
+                if (guestCart[cartKey]) {
+                    guestCart[cartKey].quantity += totalQuantity;
+                    guestCart[cartKey].price = guestCart[cartKey].quantity * price;
+                } else {
+                    guestCart[cartKey] = { id, title, price, img, quantity: totalQuantity, type: quantityType };
+                }
+                localStorage.setItem("guestCart", JSON.stringify(guestCart));
+                loadCartFromLocalStorage();  // Ensure the cart UI is updated
+            } else {
+                // Logged-in users: Save to Firebase
+                if (cart[cartKey]) {
+                    cart[cartKey].quantity += totalQuantity;
+                    cart[cartKey].price = cart[cartKey].quantity * price;
+                } else {
+                    cart[cartKey] = { id, title, price, img, quantity: totalQuantity, type: quantityType };
+                }
+                saveCartToDatabase();
+            }
+        
+            updateCart();
+            updateCartIcon();
+        }
+
+        function loadCartFromLocalStorage() {
+            cart = JSON.parse(localStorage.getItem("guestCart")) || {};
+            updateCart();
+            updateCartIcon();
+        }
+        
+        
+        function removeFromCart(cartKey) {
+            // Remove from the cart object
+            delete cart[cartKey];
+        
+            // Remove from localStorage for guest users or update Firebase for logged-in users
+            if (!currentUserEmail) {
+                // For guest users, update the localStorage cart
+                let guestCart = JSON.parse(localStorage.getItem("guestCart")) || {};
+                delete guestCart[cartKey];  // Remove the item from the guest cart
+                localStorage.setItem("guestCart", JSON.stringify(guestCart));  // Save the updated cart to localStorage
+            } else {
+                // For logged-in users, update the Firebase cart
+                saveCartToDatabase();  // Save the cart to Firebase after removing the item
+            }
+        
+            // Update the UI
+            updateCart();
+            updateCartIcon();
+        }
+    
+        function saveCartToDatabase() {
+            if (!currentUserEmail) {
+                console.error("User is not logged in");
+                return;
+            }
+    
+            const userEmailKey = currentUserEmail.replace(/[.#$[\]]/g, '_');
+            const cartRef = ref(db, `Users/${userEmailKey}/cart`);
+    
+            set(cartRef, cart)
+                .then(() => {
+                    console.log("Cart saved to Firebase for user: " + currentUserEmail);
+                })
+                .catch((error) => {
+                    console.error("Error saving cart to Firebase:", error);
+                });
+        }
+    
+        function updateCart() {
+            const cartItems = document.querySelector('#cart-items');
+            const cartTotal = document.querySelector('#cart-total');
+            cartItems.innerHTML = '';
+        
+            let total = 0;
+            for (let cartKey in cart) {
+                const product = cart[cartKey];
+                const li = document.createElement('li');
+                li.classList.add('cart-item');
+                li.innerHTML = `
+                    <img src="${product.img}" alt="${product.title}" class="cart-item-img">
+                    <span class="cart-item-title">${product.title} (${product.type})</span>
+                    <span class="cart-item-price">$${(product.price).toFixed(2)}</span>
+                    <span class="cart-item-quantity">
+                        <button class="decrease-btn" data-key="${cartKey}">-</button>
+                        ${product.quantity} ${product.type}
+                        <button class="increase-btn" data-key="${cartKey}">+</button>
+                    </span>
+                `;
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = () => removeFromCart(cartKey);
+                li.appendChild(removeButton);
+        
+                cartItems.appendChild(li);
+                total += product.price;
+            }
+        
+            cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+            updateCartIcon();
+        
+            // Attach event listeners for increase and decrease buttons
+            document.querySelectorAll('.increase-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => increaseQuantity(e.target.dataset.key));
+            });
+        
+            document.querySelectorAll('.decrease-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => decreaseQuantity(e.target.dataset.key));
+            });
+        }
+        
+        // Add event listeners for increasing/decreasing cart item quantities
+        document.querySelector('#cart-items').addEventListener('click', (e) => {
+            if (e.target.classList.contains('increase-btn')) {
+                const title = e.target.dataset.title;
+                increaseQuantity(title);
+            } else if (e.target.classList.contains('decrease-btn')) {
+                const title = e.target.dataset.title;
+                decreaseQuantity(title);
+            }
+        });
+    
+        function increaseQuantity(cartKey) {
+            if (cart[cartKey]) {
+                const [title, quantityType] = cartKey.split('-');
+                const product = Object.values(productsData).find(item => item.title === title);
+                if (product) {
+                    cart[cartKey].quantity += 1;
+                    cart[cartKey].price = cart[cartKey].quantity * product.prices[quantityType];
+                    // Update localStorage for guest users
+                    if (!currentUserEmail) {
+                        let guestCart = JSON.parse(localStorage.getItem("guestCart")) || {};
+                        guestCart[cartKey] = cart[cartKey];
+                        localStorage.setItem("guestCart", JSON.stringify(guestCart));  // Save to localStorage
+                    } else {
+                        saveCartToDatabase();  // Save to Firebase for logged-in users
+                    }
+
+                    // Update cart UI
+                    updateCart();
+                    updateCartIcon();
+                }
+            }
+        }
+        
+        function decreaseQuantity(cartKey) {
+            if (cart[cartKey]) {
+                const [title, quantityType] = cartKey.split('-');
+                const product = Object.values(productsData).find(item => item.title === title);
+                if (product) {
+                    if (cart[cartKey].quantity > 1) {
+                        cart[cartKey].quantity -= 1;
+                        cart[cartKey].price = cart[cartKey].quantity * product.prices[quantityType];
+                    } else {
+                        delete cart[cartKey];  // Remove from cart if quantity reaches 0
+                    }
+                    // Update localStorage for guest users
+                    if (!currentUserEmail) {
+                        let guestCart = JSON.parse(localStorage.getItem("guestCart")) || {};
+                        guestCart[cartKey] = cart[cartKey] || {};
+                        if (cart[cartKey] === undefined) {
+                            delete guestCart[cartKey];  // Remove item from guest cart if deleted
+                        }
+                        localStorage.setItem("guestCart", JSON.stringify(guestCart));  // Save to localStorage
+                    } else {
+                        saveCartToDatabase();  // Save to Firebase for logged-in users
+                    }
+
+                    // Update cart UI
+                    updateCart();
+                    updateCartIcon();
+                }
+            }
+        }
+        
+        function checkout() {
+            if (!currentUserEmail) {
+                alert("Please log in to complete the checkout.");
+                return;
+            }
+    
+            if (Object.keys(cart).length === 0) {
+                alert("Your cart is empty. Add items to your cart before proceeding.");
+                return;
+            }
+    
+            const userEmailKey = currentUserEmail.replace(/[.#$[\]]/g, '_');
+            const userRef = ref(db, `Users/${userEmailKey}`);
+    
+            update(userRef, {
+                orders: (previousOrders || []).concat(cart),
+                cart: []
+            }).then(() => {
+                alert('Checkout successful!');
+                cart = {};
+                updateCart();
+                updateCartIcon();
+            }).catch((error) => {
+                console.error("Error during checkout:", error);
+            });
+        }
+    </script>
+    
 </body> 
-</html> 
+</html>

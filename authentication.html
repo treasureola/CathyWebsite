@@ -15,18 +15,17 @@
 
     <!-- The Modal for login -->
     <div id="id01" class="modal">
-        <span onclick="document.getElementById('id01').style.display='none'"
-    class="close" title="Close Modal">&times;</span>
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
     
         <!-- Modal Content -->
-        <form class="modal-content animate" id="login-form" action="home.html">
+        <form class="modal-content animate" id="login-form">
     
         <div class="container">
             <label for="uname"><b>Email</b></label>
-            <input type="text" id = "email" placeholder="Enter Email" name="email" required>
+            <input type="text" id="login-email" placeholder="Enter Email" name="email" required>
     
             <label for="psw"><b>Password</b></label>
-            <input type="password" id = "password" placeholder="Enter Password" name="password" required>
+            <input type="password" id="login-password" placeholder="Enter Password" name="password" required>
     
             <button type="submit">Login</button>
             <label>
@@ -44,16 +43,19 @@
     <!-- The Modal (contains the Sign Up form) -->
     <div id="id02" class="modal">
         <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-        <form class="modal-content" id="signup-form" action="home.html">
+        <form class="modal-content" id="signup-form">
         <div class="container">
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
             <hr>
+            <label for="name"><b>Name</b></label>
+            <input type="text" id="user-name" placeholder="Enter Name" name="name" required>
+
             <label for="email"><b>Email</b></label>
-            <input type="text" id="email" placeholder="Enter Email" name="email" required>
+            <input type="text" id="signup-email" placeholder="Enter Email" name="email" required>
     
             <label for="psw"><b>Password</b></label>
-            <input type="password" id="password" placeholder="Enter Password" name="psw" required>
+            <input type="password" id="signup-password" placeholder="Enter Password" name="psw" required>
     
             <label for="psw-repeat"><b>Repeat Password</b></label>
             <input type="password" id="repeatPassword" placeholder="Repeat Password" name="psw-repeat" required>
@@ -72,6 +74,9 @@
         </form>
     </div>
 
+    <h1> OR </h1>
+    <button onclick="shopAsGuest()">Shop as Guest</button>
+
     <script>
         // List of modal IDs
         var modalIds = ['id01', 'id02']; // Add all your modal IDs here
@@ -87,10 +92,17 @@
         }        
     </script>
 
+    <script>
+        function shopAsGuest() {
+            sessionStorage.setItem("guestUser", "true");  // Store guest mode
+            window.location.href = "home.html";
+        }
+    </script>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
-        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+        import { getDatabase, ref, set, get, update } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
     
         // Your Firebase configuration
         const firebaseConfig = {
@@ -109,28 +121,29 @@
         const auth = getAuth(app);
         const database = getDatabase(app);
     
-        document.getElementById('id02').addEventListener('submit', submitForm);
-        document.getElementById('id01').addEventListener('submit', loginUser);
-
+        document.getElementById('signup-form').addEventListener('submit', submitSignUpForm);
+        document.getElementById('login-form').addEventListener('submit', submitLoginForm);
     
-        function submitForm(e) {
-            e.preventDefault();
-            let email = getInputVal('email');
-            let password = getInputVal('password');
+        // Handle sign up
+        function submitSignUpForm(e) {
+            e.preventDefault(); // Prevent the default form submission behavior
+            let name = getInputVal('user-name');
+            let email = getInputVal('signup-email');
+            let password = getInputVal('signup-password');
             let repeatPassword = getInputVal('repeatPassword');
     
-            if (email !== '' && password !== '' && password === repeatPassword) {
-                saveMessage(email, password);
-                registerUser(email, password);
+            if (email !== '' && password !== '' &&  name !== '' && password === repeatPassword) {
+                registerUser(email, password, name);
             } else {
                 alert("Please check your input fields.");
             }
         }
 
-        function loginUser(e) {
-            e.preventDefault();
-            let email = getInputVal('email');  // "uname" is used for email in the login form
-            let password = getInputVal('password'); // "psw" is used for password in the login form
+        // Handle login
+        function submitLoginForm(e) {
+            e.preventDefault(); // Prevent the default form submission behavior
+            let email = getInputVal('login-email');
+            let password = getInputVal('login-password');
         
             if (email !== '' && password !== '') {
                 signInUser(email, password);  // Call the function for signing in
@@ -143,10 +156,29 @@
             return document.getElementById(id).value;
         }
 
-        async function registerUser(email, password) {
+        // Register the user
+        async function registerUser(email, password, name) {
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                console.log("User registered:", userCredential.user);
+                const user = userCredential.user;
+
+                // Replace "." in email to avoid Firebase path issues
+                const sanitizedEmail = email.replace(/\./g, "_");
+
+                // Save user data to Firebase Realtime Database
+                const userRef = ref(database, 'Users/' + sanitizedEmail);
+                await set(userRef, {
+                    profile: {
+                        fullName: name,  // User's full name
+                        email: email,  // User's email
+                        addresses: [],
+                        paymentMethods: [],
+                    },
+                    cart: [],  // Initialize cart as an empty array
+                    orders: []  // Initialize orders as an empty array
+                });
+
+                console.log("User registered:", user);
                 window.location.href = "home.html";
                 document.getElementById('id02').style.display = 'none';  // Close modal after registration
                 document.getElementById('signup-form').reset();  // Reset the sign-up form
@@ -156,6 +188,7 @@
             }
         }
         
+        // Sign in the user
         async function signInUser(email, password) {
             try {
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -168,9 +201,6 @@
                 alert("Login failed: " + error.message);
             }
         }
-        
     </script>
-    
-
 </body>
 </html>

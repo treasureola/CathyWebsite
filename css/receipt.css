@@ -1,0 +1,166 @@
+:root {
+    --accent-color: #eaf2f5;
+    --primary-text-color: #141414;
+    --secondary-text-color: #007676;
+    --primary-color: #fff;
+    --secondary-color: #007676;
+    --box-shadow: rgba(0, 0, 0, 0.25);
+    --hover-btn-color: #45a049; /* Consistent button hover color */
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    padding: 8px;
+    background: darkkhaki;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar Styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    padding: 0 10vw;
+    z-index: 9;
+    background: var(--accent-color);
+}
+
+.logo {
+    height: 1.5rem;
+}
+
+.links-container {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin-left: 7.5%;
+}
+
+.links {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    transition: .2s;
+}
+
+.links:hover {
+    color: var(--secondary-text-color);
+}
+
+.nav-extras {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 1rem;
+}
+
+.container {
+    max-width: 90vw;
+    margin: auto;
+    text-align: center;
+    padding-top: 10px;
+    transition: 0.5s;
+}
+
+h2 {
+    font-family: "Great Vibes", cursive;
+    font-size: 3rem;
+    text-align: center;
+    color: #ff6a23;
+    padding-top: 50px;
+}
+
+/* Receipt Page Styling */
+#order-details {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+    margin-top: 2rem;
+}
+
+#order-details h4 {
+    font-size: 1.8rem;
+    color: var(--primary-text-color);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+#order-details h5 {
+    font-size: 1.4rem;
+    color: var(--secondary-text-color);
+    margin-top: 1.5rem;
+}
+
+#order-details p {
+    font-size: 1.2rem;
+    color: var(--primary-text-color);
+    margin-bottom: 0.8rem;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+}
+
+.order-item-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 1rem;
+}
+
+.order-item p {
+    flex: 1;
+    margin-left: 10px;
+    font-size: 1rem;
+    color: var(--primary-text-color);
+}
+
+.order-item .price {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.order-item .quantity {
+    font-style: italic;
+    color: #999;
+}
+
+/* Total Price Styling */
+h4.total {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+/* Add button styles for better aesthetics */
+button {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: var(--hover-btn-color);
+}

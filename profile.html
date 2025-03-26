@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>User Profile</title>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <img src="img/logo.png" class="logo" alt="Logo">
+        <ul class="links-container">
+            <li class="link_items"> <a href='home.html' class="links"> Home</a></li>
+            <li class="link_items"> <a href='home.html#menu-section' class="links"> Menu</a></li>
+            <li class="link_items"> <a href='home.html#contact-section' class="links"> Contact Us</a></li>
+            <li class="link_items"> <a href='authentication.html' class="links" id="auth-link"> Log In</a></li>
+            <li class="link_items"> <a href='profile.html' class="links"> My Profile</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>My Profile</h2>
+        
+        <!-- Profile Info Section -->
+        <div class="profile-info" id="profile-info">
+            <h3>User Information</h3>
+            <p><strong>Name:</strong> <span id="user-name">Loading...</span></p>
+            <p><strong>Email:</strong> <span id="user-email">Loading...</span></p>
+        </div>
+
+        <!-- Addresses Section -->
+        <div class="section-toggle" id="addresses-toggle">
+            <h3 class="toggle-header">View Addresses</h3>
+            <div class="toggle-content" id="addresses-list">
+                <!-- Addresses will be dynamically injected here -->
+                <p>Loading addresses...</p>
+            </div>
+        </div>
+
+        <!-- Payment Methods Section -->
+        <div class="section-toggle" id="payment-methods-toggle">
+            <h3 class="toggle-header">View Payment Methods</h3>
+            <div class="toggle-content" id="payment-methods-list">
+                <!-- Payment methods will be dynamically injected here -->
+                <p>Loading payment methods...</p>
+            </div>
+        </div>
+
+        <!-- Orders Section -->
+        <div class="section-toggle" id="orders-toggle">
+            <h3 class="toggle-header">View Previous Orders</h3>
+            <div class="toggle-content" id="orders-list">
+                <!-- Orders will be dynamically injected here -->
+                <p>Loading orders...</p>
+            </div>
+        </div>
+
+        <!-- Login/Sign up Prompt for Guests -->
+        <div id="guest-prompt" style="display: none;">
+            <p>You need to <a href="authentication.html">log in</a> or <a href="authentication.html">sign up</a> to view your profile information.</p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAeayNjPcYEheW3253EznF5wMM5_uprBJ0",
+            authDomain: "cathy-b354a.firebaseapp.com",
+            databaseURL: "https://cathy-b354a-default-rtdb.firebaseio.com",
+            projectId: "cathy-b354a",
+            storageBucket: "cathy-b354a.firebasestorage.app",
+            messagingSenderId: "804564901869",
+            appId: "1:804564901869:web:2d9e66ed9d175efae051e4",
+            measurementId: "G-Q1ZGEPM91T"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth(app);
+
+        // User authentication and fetching profile data
+        let currentUserEmail = "";
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User authenticated:", user.email);  // Debugging
+                currentUserEmail = user.email;
+                document.getElementById('guest-prompt').style.display = 'none';  // Hide guest prompt
+                fetchUserProfile(user.email);  // Fetch profile data
+                fetchUserOrders(user.email);  // Fetch previous orders
+            } else {
+                console.log("User not authenticated.");  // Debugging
+                document.getElementById('profile-info').style.display = 'none';  // Hide profile info section
+                document.getElementById('guest-prompt').style.display = 'block';  // Show guest prompt
+            }
+        });
+
+        // Fetch user profile
+        function fetchUserProfile(email) {
+            const userEmailKey = email.replace(/[.#$[\]]/g, '_'); // Safe Firebase key
+            const userRef = ref(db, `Users/${userEmailKey}/profile`);
+
+            get(userRef).then((snapshot) => {
+                console.log("Fetching user profile from:", userEmailKey, snapshot);  // Debugging
+                if (snapshot.exists()) {
+                    const profileData = snapshot.val();
+                    console.log("Profile data:", profileData);  // Debugging
+                    document.getElementById('user-name').innerText = profileData.fullName;
+                    document.getElementById('user-email').innerText = profileData.email;
+                    // Fetch and display addresses
+                    fetchAddresses(userEmailKey);
+
+                    // Fetch and display payment methods
+                    fetchPaymentMethods(userEmailKey);
+                } else {
+                    console.log("User profile not found.");
+                }
+            }).catch((error) => {
+                console.error("Error fetching user profile:", error);
+            });
+        }
+
+        // Fetch user addresses
+        function fetchAddresses(userEmailKey) {
+            const addressesRef = ref(db, `Users/${userEmailKey}/profile/addresses`);
+            get(addressesRef).then((snapshot) => {
+                const addressesListContainer = document.getElementById('addresses-list');
+                if (snapshot.exists()) {
+                    const addresses = snapshot.val();
+                    addressesListContainer.innerHTML = ""; // Clear the "Loading addresses..." text
+                    for (let addressId in addresses) {
+                        const address = addresses[addressId];
+                        const addressHTML = `
+                            <div class="address">
+                                <p><strong>Address:</strong> ${address.fullName}, ${address.address}, ${address.city}, ${address.state}, ${address.zip}</p>
+                            </div>
+                        `;
+                        addressesListContainer.innerHTML += addressHTML;
+                    }
+                } else {
+                    addressesListContainer.innerHTML = "<p>You have no saved addresses.</p>";
+                }
+            }).catch((error) => {
+                console.error("Error fetching addresses:", error);
+                document.getElementById('user-address').innerHTML = "<p>Error loading addresses.</p>";
+            });
+        }
+
+        // Fetch user payment methods
+        function fetchPaymentMethods(userEmailKey) {
+            const paymentMethodsRef = ref(db, `Users/${userEmailKey}/profile/paymentMethods`);
+            get(paymentMethodsRef).then((snapshot) => {
+                const paymentMethodsListContainer = document.getElementById('payment-methods-list');
+                if (snapshot.exists()) {
+                    const paymentMethods = snapshot.val();
+                    paymentMethodsListContainer.innerHTML = ""; // Clear the "Loading payment methods..." text
+                    for (let paymentId in paymentMethods) {
+                        const payment = paymentMethods[paymentId];
+                        const paymentHTML = `
+                            <div class="payment-method">
+                                <p><strong>Card Type:</strong> ${payment.cardType}</p>
+                                <p><strong>Card Number:</strong> **** **** **** ${payment.cardNumber.slice(-4)}</p>
+                                <p><strong>Billing Address:</strong> ${payment.billingAddress.fullName}, ${payment.billingAddress.address}, ${payment.billingAddress.city}, ${payment.billingAddress.state}, ${payment.billingAddress.zip}</p>
+                            </div>
+                        `;
+                        paymentMethodsListContainer.innerHTML += paymentHTML;
+                    }
+                } else {
+                    paymentMethodsListContainer.innerHTML = "<p>You have no saved payment methods.</p>";
+                }
+            }).catch((error) => {
+                console.error("Error fetching payment methods:", error);
+                document.getElementById('payment-methods').innerHTML = "<p>Error loading payment methods.</p>";
+            });
+        }
+
+
+        // Fetch user orders
+        function fetchUserOrders(email) {
+            const userEmailKey = email.replace(/[.#$[\]]/g, '_'); // Safe Firebase key
+            const ordersRef = ref(db, `Users/${userEmailKey}/orders`);
+
+            get(ordersRef).then((snapshot) => {
+                const ordersListContainer = document.getElementById('orders-list');
+                if (snapshot.exists()) {
+                    const orders = snapshot.val();
+                    ordersListContainer.innerHTML = ""; // Clear the "Loading orders..." text
+
+                    for (let orderId in orders) {
+                        const order = orders[orderId];
+
+                        const orderHTML = `
+                            <div class="order">
+                                <p><strong>Order ID:</strong> ${orderId}</p> <!-- Added orderId here -->
+                                <p><strong>Order Date:</strong> ${order.timestamp}</p>
+                                <p><strong>Address:</strong> ${order.shippingAddress.fullName}, ${order.shippingAddress.address}, ${order.shippingAddress.city}, ${order.shippingAddress.state}, ${order.shippingAddress.zip}</p>
+                                <p><strong>Billing Address:</strong> ${order.billingAddress.fullName}, ${order.billingAddress.address}, ${order.billingAddress.city}, ${order.billingAddress.state}, ${order.billingAddress.zip}</p>
+                                <p><strong>Payment:</strong> ${order.payment.cardName}, ${order.payment.cardNumber}, ${order.payment.expMonth}, ${order.payment.expYear}</p>
+                                <p><strong>Items:</strong></p>
+                                
+                                ${Object.keys(order.items).map(item => `<li>${item} (x${order.items[item].quantity})</li>`).join('')}
+                                
+                                <p><strong>Total Price:</strong> $${calculateTotalPrice(order.items).toFixed(2)}</p>
+                            </div>
+                            <hr>
+                        `;
+
+                        ordersListContainer.innerHTML += orderHTML;
+                    }
+                } else {
+                    ordersListContainer.innerHTML = "<p>You have no previous orders.</p>";
+                }
+            }).catch((error) => {
+                console.error("Error fetching user orders:", error);
+            });
+}
+
+
+        // Calculate total price for an order
+        function calculateTotalPrice(items) {
+            let total = 0;
+            for (let item in items) {
+                total += items[item].price * items[item].quantity;
+            }
+            return total;
+        }
+
+        // Toggle Section Functionality
+        const toggleHeaders = document.querySelectorAll('.toggle-header');
+        
+        toggleHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
